@@ -1,19 +1,16 @@
 h1 {
     background-color: #ff6b6b;
     text-align: center;
-    font-family: "Futura", sans-serif;
 }
 
 h2 {
     background-color: #8686ff;
     text-align: center;
-    font-family: "Futura", sans-serif;
 }
 
 h3 {
     background-color: #77ff77;
     text-align: center;
-    font-family: "Futura", sans-serif;
 }
 
 em {
@@ -23,9 +20,18 @@ em {
 
 ul {
     background-color: #ff77ff;
-    font-family: "Comic Sans MS", cursive;
+}
+
+.yellow-for-js {
+    background-color: #ffc400;
+}
+
+.grey-indent {
+    background-color: #8e8e8e;
 }
 
 body {
     background-color: #7b7b7b;
+    font-family: "Futura", sans-serif;
 }
+
