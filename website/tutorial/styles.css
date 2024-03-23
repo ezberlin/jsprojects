@@ -13,6 +13,10 @@ h3 {
     text-align: center;
 }
 
+.grey-indent {
+    background-color: #8e8e8e;
+}
+
 em {
     background-color: #000000;
     color: #FFFFFF;
@@ -26,8 +30,23 @@ ul {
     background-color: #ffc400;
 }
 
-.grey-indent {
-    background-color: #8e8e8e;
+.centered-button {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    transition: background-color 0.5s ease; /* Animation */
+    border-radius: 12px;
+    
+}
+
+button:hover {
+    background-color: #008369; /* Darker green */
 }
 
 body {
@@ -35,3 +54,12 @@ body {
     font-family: "Futura", sans-serif;
 }
 
+input[type="number"] {
+    background-color: #b1f9ff; /* White */
+    color: #000000; /* Black */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #000000; /* Black border */
+    text-align: center;
+    width: 45px; /* Width of the text box */
+    height: 15px; /* Height of the text box */
+}
