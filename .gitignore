@@ -37,3 +37,6 @@ yarn.lock
 
 # Ignore editor backup files
 *~
+
+# Ignore access id for vbbproject
+website/vbbproject/access.js
