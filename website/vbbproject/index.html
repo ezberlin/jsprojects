@@ -3,12 +3,26 @@
 
 <head>
     <title>My Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
+    <h1>VBB Project</h1>
 
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" name="latitude">
+    Currently: <span id="currentLatitude"></span>
+    <br>
 
-    <script src="script.js"></script>
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" name="longitude">
+    Currently: <span id="currentLongitude"></span>
+    <br>
+
+    <button onclick="getCoordinatesByInput()">Submit</button>
+
     <script src="access.js"></script>
+    <script src="script.js"></script>
+    <script src="location.js"></script>
 </body>
 </html>
