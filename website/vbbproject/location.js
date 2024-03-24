@@ -13,6 +13,9 @@ function notePositionByGeolocation(position) {
     actualiseInfos();
     writeStoredCoordinates();
     actualiseMap();
+
+    document.getElementById('latitude').value = '';
+    document.getElementById('longitude').value = '';
 }
 
 function getCoordinatesByInput() {

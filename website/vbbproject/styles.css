@@ -26,7 +26,7 @@ h4 {
 
 #map { 
     height: 400px; 
-    width: 80%;
+    width: 400px;
 }
 
 body {
@@ -35,4 +35,13 @@ body {
     padding: 0;
     background-color: rgb(229, 229, 229);
     text-align: center;
+}
+
+#table-container {
+    display: flex;
+    justify-content: center;
+}
+
+table, th, td {
+    border: 1px solid black;
 }

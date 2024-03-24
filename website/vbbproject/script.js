@@ -2,6 +2,7 @@ let closestStations = {};
 
 function actualiseInfos() {
     /** Actualises all the informations */
+    console.log("lol")
     getNextStations();
 }
 
@@ -46,6 +47,8 @@ function updateNextStationsTable() {
     let row;
     let cell;
     tableBody.innerHTML = '';
+
+    console.log("lolol")
 
     for (let i = 0; i < closestStations.length; i++) {
         row = document.createElement('tr');
