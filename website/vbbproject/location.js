@@ -1,16 +1,14 @@
-let latitude = 0;
-let longitude = 0;
+let latitude = 52.5;
+let longitude = 13.3;
+actualiseInfos();
 writeStoredCoordinates();
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(notePositionByGeolocation);
-}
 
 function notePositionByGeolocation(position) {
     /** Fetches the coordinates of the user */
 
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
+    actualiseInfos();
     writeStoredCoordinates();
 }
 
@@ -21,8 +19,12 @@ function getCoordinatesByInput() {
     longitude = document.getElementById('longitude').value;
     console.log(latitude);
     console.log(longitude);
-    writeStoredCoordinates();
     actualiseInfos();
+    writeStoredCoordinates();
+
+    document.getElementById('latitude').value = '';
+    document.getElementById('longitude').value = '';
+    
 }
 
 function writeStoredCoordinates() {
