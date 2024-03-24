@@ -3,7 +3,25 @@ let longitude = 13.3;
 
 actualiseInfos();
 writeStoredCoordinates();
-actualiseMap();
+
+var map = L.map('map').setView([latitude, longitude], 13);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        minZoom: 7,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+var marker;
+map.on('click', function(e) {
+    if(marker)
+        map.removeLayer(marker);
+    latitude = e.latlng.lat;
+    longitude = e.latlng.lng;
+    actualiseInfos();
+    writeStoredCoordinates();
+    marker = L.marker(e.latlng).addTo(map);
+});
 
 function notePositionByGeolocation(position) {
     /** Fetches the coordinates of the user */
@@ -12,7 +30,6 @@ function notePositionByGeolocation(position) {
     longitude = position.coords.longitude;
     actualiseInfos();
     writeStoredCoordinates();
-    actualiseMap();
 
     document.getElementById('latitude').value = '';
     document.getElementById('longitude').value = '';
@@ -25,7 +42,6 @@ function getCoordinatesByInput() {
     longitude = document.getElementById('longitude').value;
     actualiseInfos();
     writeStoredCoordinates();
-    actualiseMap();
 
     document.getElementById('latitude').value = '';
     document.getElementById('longitude').value = '';
@@ -39,15 +55,8 @@ function writeStoredCoordinates() {
     document.getElementById('currentLongitude').textContent = longitude;
 }
 
-function actualiseMap() {
-    var map = L.map('map').setView([latitude, longitude], 13);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        minZoom: 10,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-}
+
 
 
 

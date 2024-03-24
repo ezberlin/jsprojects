@@ -2,7 +2,6 @@ let closestStations = {};
 
 function actualiseInfos() {
     /** Actualises all the informations */
-    console.log("lol")
     getNextStations();
 }
 
@@ -33,10 +32,14 @@ async function getNextStations() {
     // Fetch the needed information from the API and transform it into a sorted array
     // Fetch the needed information from the API and transform it into a sorted array
     data = await fetchAPI(APIURL);
+    if (data.stopLocationOrCoordLocation === undefined) {
+        closestStations = [];
+    } else {
     closestStations = data.stopLocationOrCoordLocation.map(location => {
         return [location.StopLocation.name, location.StopLocation.dist];
     });
-    closestStations.sort((a, b) => a[1] - b[1]);
+    }
+    closestStations.sort((a, b) => a[1] - b[1])
     console.log(closestStations);
     updateNextStationsTable();
     
@@ -47,8 +50,6 @@ function updateNextStationsTable() {
     let row;
     let cell;
     tableBody.innerHTML = '';
-
-    console.log("lolol")
 
     for (let i = 0; i < closestStations.length; i++) {
         row = document.createElement('tr');
