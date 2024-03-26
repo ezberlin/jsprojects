@@ -30,7 +30,6 @@ async function getNextStations() {
     APIURL.searchParams.append("maxNo", "5");
 
     // Fetch the needed information from the API and transform it into a sorted array
-    // Fetch the needed information from the API and transform it into a sorted array
     data = await fetchAPI(APIURL);
     if (data.stopLocationOrCoordLocation === undefined) {
         closestStations = [];

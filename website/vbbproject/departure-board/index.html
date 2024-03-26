@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>My Website</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+</head>
+
+<body>
+    <h1>The VBB Project</h1>
+    <h2> Website with information for the local public transport in Berlin-Brandenburg</h2>
+    <br>
+
+
+    <h3> Your station </h3>
+    Currently: <span id="currentStation"></span>
+
+
+    <h4> Enter station ID </h4>
+    <label for="stationid">Station ID:</label>
+    <input type="text" id="stationid" name="stationid">
+
+    
+    <br>
+    <button onclick="getCoordinatesByInput()">Submit</button>
+    <br>
+
+    <h4> Next to current location </h4>
+    <button onclick="navigator.geolocation.getCurrentPosition(notePositionByGeolocation)">Use your current location </button>
+
+    <h4> Use map </h4>
+
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+
+    <h3> Departure Table </h3>
+
+    <div id="table-container">
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Train</th>
+                    <th>Direction</th>
+                    <th>Track</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    
+    <script src="script.js"></script>
+    <script src="../access.js"></script>
+    <script src="station.js"></script>
+
+</body>
+</html>

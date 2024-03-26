@@ -1,9 +1,6 @@
 let latitude = 52.5;
 let longitude = 13.3;
 
-let newLatitude = 52.5;
-let newLongitude = 13.4;
-
 actualiseInfos();
 writeStoredCoordinates();
 
