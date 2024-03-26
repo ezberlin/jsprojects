@@ -23,16 +23,16 @@
 
 
     <h4> Enter station name </h4>
-    <label for="stationname">Station ID:</label>
+    <label for="stationname">Station Name:</label>
     <input type="text" id="stationname" name="stationname">
 
     
     <br>
-    <button onclick="getCoordinatesByInput()">Submit</button>
+    <button onclick="getStationByInput()">Submit</button>
     <br>
 
     <h4> Next to current location </h4>
-    <button onclick="navigator.geolocation.getCurrentPosition(notePositionByGeolocation)">Use your current location </button>
+    <button onclick="navigator.geolocation.getCurrentPosition(noteStationByGeolocation)">Use your current location </button>
 
     <h4> Use map </h4>
 

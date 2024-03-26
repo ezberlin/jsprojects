@@ -2,13 +2,15 @@ let latitude = 52.5;
 let longitude = 13.3;
 let stationid = "";
 let stationname = "";
+let departureBoard = [];
+
 
 let map;
 let marker;
 
 initialiseMap();
 
-map.on('click', actualiseMarker);
+map.on('click', actualiseMarkerOnClick);
 
 function initialiseMap() {
     /** Initialises the map */
@@ -23,30 +25,57 @@ function initialiseMap() {
 
 }
 
-async function actualiseMarker(e) {
+async function actualiseMarkerOnClick(clickPos) {
     if(marker)
         map.removeLayer(marker);
-    latitude = e.latlng.lat;
-    longitude = e.latlng.lng;
-    marker = L.marker(e.latlng).addTo(map)
+    latitude = clickPos.latlng.lat;
+    longitude = clickPos.latlng.lng;
+    marker = L.marker(clickPos.latlng).addTo(map)
 
     await coordinatesToStation();
-    console.log(latitude, longitude);
-    console.log(stationname);
     writeStoredStation();
 }
 
-function noteStationByGeolocation(position) {
+function actualiseMarkerWithCoords() {
+    if(marker)
+        map.removeLayer(marker);
+    marker = L.marker([latitude, longitude]).addTo(map)
+}
+
+async function noteStationByGeolocation(position) {
     /** Fetches the coordinates of the user and translates them to the next station */
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
 
-    coordinatesToStation();
+    await coordinatesToStation();
     writeStoredStation();
 }
 
-function getStationByInput() {
+async function getStationByInput() {
     /** Takes the station from the input fields */
+    let inputStationName = document.getElementById('stationname').value;
+    let data;
+    let APIURL = new URL("https://vbb.demo.hafas.de/fahrinfo/restproxy/2.32/location.name");
+    APIURL.searchParams.append("format", "json");
+    APIURL.searchParams.append("accessId", ACCESSID);
+    APIURL.searchParams.append("input", inputStationName);
+    APIURL.searchParams.append("maxNo", 1);
+
+    // Fetch the needed information from the API and transform it into a sorted array
+    data = await fetchAPI(APIURL);
+    if (data.stopLocationOrCoordLocation === undefined) {
+        stationname = "";
+        stationid = "";
+    } else {
+        stationname = data.stopLocationOrCoordLocation[0].StopLocation.name;
+        stationid = data.stopLocationOrCoordLocation[0].StopLocation.id;
+        latitude = data.stopLocationOrCoordLocation[0].StopLocation.lat;
+        longitude = data.stopLocationOrCoordLocation[0].StopLocation.lon;
+        actualiseMarkerWithCoords();
+    }
+    document.getElementById('stationname').value = ''
+    writeStoredStation();
+    getDepartureBoard();
 }
 
 async function coordinatesToStation() {
@@ -62,23 +91,26 @@ async function coordinatesToStation() {
 
     // Fetch the needed information from the API and transform it into a sorted array
     data = await fetchAPI(APIURL);
+    console.log(data);
     if (data.stopLocationOrCoordLocation === undefined) {
         stationname = "";
         stationid = "";
     } else {
         stationname = data.stopLocationOrCoordLocation[0].StopLocation.name;
         stationid = data.stopLocationOrCoordLocation[0].StopLocation.id;
+        latitude = data.stopLocationOrCoordLocation[0].StopLocation.lat;
+        longitude = data.stopLocationOrCoordLocation[0].StopLocation.lon;
+        console.log(latitude, longitude);
+        actualiseMarkerWithCoords();
+        
     }
+
+    getDepartureBoard();
 }
 
 function writeStoredStation() {
     /** Writes the stored station to the output fields */
     document.getElementById('currentStation').textContent = stationname;
 }
-
-
-
-
-
 
 
