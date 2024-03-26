@@ -23,25 +23,30 @@ function initialiseMap() {
 
 }
 
-function actualiseMarker(e) {
+async function actualiseMarker(e) {
     if(marker)
         map.removeLayer(marker);
     latitude = e.latlng.lat;
     longitude = e.latlng.lng;
     marker = L.marker(e.latlng).addTo(map)
-    coordinatesToStation();
+
+    await coordinatesToStation();
+    console.log(latitude, longitude);
+    console.log(stationname);
+    writeStoredStation();
 }
 
 function noteStationByGeolocation(position) {
     /** Fetches the coordinates of the user and translates them to the next station */
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+
+    coordinatesToStation();
+    writeStoredStation();
 }
 
 function getStationByInput() {
     /** Takes the station from the input fields */
-}
-
-function writeStoredStation() {
-    /** Writes the stored station to the output fields */
 }
 
 async function coordinatesToStation() {
@@ -64,7 +69,11 @@ async function coordinatesToStation() {
         stationname = data.stopLocationOrCoordLocation[0].StopLocation.name;
         stationid = data.stopLocationOrCoordLocation[0].StopLocation.id;
     }
-    console.log(stationname);
+}
+
+function writeStoredStation() {
+    /** Writes the stored station to the output fields */
+    document.getElementById('currentStation').textContent = stationname;
 }
 
 
