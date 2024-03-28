@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>My Website</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+</head>
+
+<body>
+    <h1>The VBB Project</h1>
+    <h2> Website with information for the local public transport in Berlin-Brandenburg</h2>
+    <br>
+
+
+    <h3> Start location </h3>
+    Currently: <span id="startlocation"></span>
+
+
+    <h4> Enter station name </h4>
+    <label for="stationname1">Station Name:</label>
+    <input type="text" id="stationname1" name="stationname1">
+
+    
+    <br>
+    <button onclick="getStation1ByInput()">Submit</button>
+    <br>
+
+    <h4> Use current location </h4>
+    <button onclick="navigator.geolocation.getCurrentPosition(noteStartByGeolocation)">Use your current location </button>
+
+    <h4> Use map </h4>
+
+    <div id="map-container1">
+        <div id="map1"></div>
+    </div>
+
+
+
+    <h3> Destination location </h3>
+    Currently: <span id="destinationlocation"></span>
+
+
+    <h4> Enter station name </h4>
+    <label for="stationname2">Station Name:</label>
+    <input type="text" id="stationname2" name="stationname2">
+
+    
+    <br>
+    <button onclick="getStation2ByInput()">Submit</button>
+    <br>
+
+    <h4> Use current location </h4>
+    <button onclick="navigator.geolocation.getCurrentPosition(noteDestinationByGeolocation)">Use your current location </button>
+
+    <h4> Use map </h4>
+
+    <div id="map-container2">
+        <div id="map2"></div>
+    </div>
+
+    <h3> Trip Options </h3>
+    Departure:
+    <input type="datetime-local" id="datetime" name="datetime">
+
+    
+
+    <br>
+    <button onclick="getTripPlanner()">Get Trip Planner</button>
+
+    <h3> Departure Table </h3>
+
+    <div id="table-container">
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Name</th>
+                    <th>Direction</th>
+                    <th>Destination</th>
+                    <th>Track</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    
+    <script src="script.js"></script>
+    <script src="../access.js"></script>
+    <script src="locations.js"></script>
+    <script src="time.js"></script>
+
+</body>
+</html>
