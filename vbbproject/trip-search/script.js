@@ -35,6 +35,12 @@ async function getTripPlanner() {
         tripPlanner = data.Trip[0].LegList.Leg.map(leg => {
             return [leg.Origin.rtTime ? leg.Origin.rtTime : leg.Origin.time, leg.name, leg.direction, leg.Destination.name, leg.Origin.track];
         });
+        tripPlanner.push([
+            data.Trip[0].LegList.Leg[data.Trip[0].LegList.Leg.length - 1].Destination.rtTime 
+                ? data.Trip[0].LegList.Leg[data.Trip[0].LegList.Leg.length - 1].Destination.rtTime 
+                : data.Trip[0].LegList.Leg[data.Trip[0].LegList.Leg.length - 1].Destination.time, 
+            "Ankunft", "", "", ""
+        ]);
     }
     updateTripPlanner();
     
