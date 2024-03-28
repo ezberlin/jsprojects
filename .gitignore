@@ -39,4 +39,4 @@ yarn.lock
 *~
 
 # Ignore access id for vbbproject
-website/vbbproject/access.js
+vbbproject/access.js
