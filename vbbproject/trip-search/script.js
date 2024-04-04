@@ -17,7 +17,7 @@ async function getTripPlanner() {
     // Generate the URL for the API request
     actualiseTime();
     let data;
-    let APIURL = new URL("https://vbb.demo.hafas.de/fahrinfo/restproxy/2.32/trip");
+    let APIURL = new URL("https://fahrinfo.vbb.de/restproxy/2.32/trip");
     APIURL.searchParams.append("format", "json");
     APIURL.searchParams.append("accessId", ACCESSID);
     APIURL.searchParams.append("originCoordLat", latitude1);

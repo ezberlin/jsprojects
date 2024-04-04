@@ -14,7 +14,7 @@ async function getDepartureBoard() {
 
     // Generate the URL for the API request
     let data;
-    let APIURL = new URL("https://vbb.demo.hafas.de/fahrinfo/restproxy/2.32/departureBoard");
+    let APIURL = new URL("https://fahrinfo.vbb.de/restproxy/2.32/departureBoard");
     APIURL.searchParams.append("format", "json");
     APIURL.searchParams.append("accessId", ACCESSID);
     APIURL.searchParams.append("id", stationid);

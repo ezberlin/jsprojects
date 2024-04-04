@@ -91,7 +91,7 @@ async function getStation1ByInput() {
     /** Takes the station from the input fields */
     let inputStationName = document.getElementById('stationname1').value;
     let data;
-    let APIURL = new URL("https://vbb.demo.hafas.de/fahrinfo/restproxy/2.32/location.name");
+    let APIURL = new URL("https://fahrinfo.vbb.de/restproxy/2.32/location.name");
     APIURL.searchParams.append("format", "json");
     APIURL.searchParams.append("accessId", ACCESSID);
     APIURL.searchParams.append("input", inputStationName);
@@ -113,7 +113,7 @@ async function getStation2ByInput() {
     /** Takes the station from the input fields */
     let inputStationName = document.getElementById('stationname2').value;
     let data;
-    let APIURL = new URL("https://vbb.demo.hafas.de/fahrinfo/restproxy/2.32/location.name");
+    let APIURL = new URL("https://fahrinfo.vbb.de/restproxy/2.32/location.name");
     APIURL.searchParams.append("format", "json");
     APIURL.searchParams.append("accessId", ACCESSID);
     APIURL.searchParams.append("input", inputStationName);
